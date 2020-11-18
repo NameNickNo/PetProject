@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Car</title>
+</head>
+<body>
+
+    <h1 align="center">
+        <a th:text = "${car.getBrand()} + '  ' + ${car.getName()}"></a>
+    </h1>
+
+    <h2 align="center">
+        <a th:text = "' price = ' + ${car.getPrice()} + ' rub/day '"></a>
+        <br>
+        <a th:text = " 'number of car is ' + ${car.getNumberOfCar()}"></a>
+        <br>
+        <a><img th:src="${car.getPhoto()}" width="610" height="300" alt="Mit"></a>
+        <br>
+        <a th:href="@{/person/rent/{id}(id = ${car.getId()})}"> To rent </a>
+
+
+    </h2>
+
+    <h2>
+        Another information
+        <a href="/car"><-- Back to main page...</a>
+    </h2>
+
+</body>
+</html>

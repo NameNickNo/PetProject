@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+
+    <h1>
+        Registration your purchase
+
+    </h1>
+    <h2>
+        Full in the fields
+
+        <form th:method="post" th:action="@{/person/registration/{id}(id=${id})}" th:object="${person}" >
+
+            <label for="firstName">First name</label>
+            <input type="text" th:field="*{firstName}" id="firstName" placeholder="enter your first name">
+            <br>
+            <label for="lastName">Last name</label>
+            <input type="text" th:field="*{lastName}" id="lastName" placeholder="enter your second name">
+            <br>
+            <label for="middleName">Middle name</label>
+            <input type="text" th:field="*{middleName}" id="middleName" placeholder="enter your middle name">
+            <br>
+            <label for="number">Phone number</label>
+            <input type="text" th:field="*{number}" id="number" placeholder="enter your phone number">
+            <br>
+            <label for="rentalDays">number of rental days</label>
+            <input type="number" name="rentalDays" id="rentalDays" placeholder="rental of days">
+            <br>
+            <input type="submit" value="Registration">
+        </form>
+
+        <br>
+        <br>
+        <a th:href="@{/car/info/{id}(id=${id})}"> <-- back to info </a>
+    </h2>
+
+
+
+</body>
+</html>
