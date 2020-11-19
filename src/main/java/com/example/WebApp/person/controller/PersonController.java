@@ -8,7 +8,10 @@ import com.example.WebApp.purchase.model.Purchase;
 import com.example.WebApp.purchase.service.PurchaseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/person")
@@ -34,15 +37,20 @@ public class PersonController {
     }
 
     @PostMapping("/registration/{carId}")
-    public String addPurchase(Person person, @PathVariable("carId") int id,
+    public String addPurchase(@Valid Person person, BindingResult bindingResult,
+                              @PathVariable("carId") int id,
                               @RequestParam("rentalDays") int rentalDays) {
         System.out.println(id);
-        personService.savePerson(person);
         System.out.println(person.toString());
 
-        Car car = carService.findById(id);
-        Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
-        purchaseService.savePurchase(createdPurchase);
+        if (bindingResult.hasErrors()) {
+            return "registration-page";
+        }
+//        personService.savePerson(person);
+
+//        Car car = carService.findById(id);
+//        Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
+//        purchaseService.savePurchase(createdPurchase);
         return "redirect:/car";
     }
 }

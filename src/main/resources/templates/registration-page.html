@@ -17,15 +17,19 @@
 
             <label for="firstName">First name</label>
             <input type="text" th:field="*{firstName}" id="firstName" placeholder="enter your first name">
+            <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">firstName error</div>
             <br>
             <label for="lastName">Last name</label>
             <input type="text" th:field="*{lastName}" id="lastName" placeholder="enter your second name">
+            <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName error</div>
             <br>
             <label for="middleName">Middle name</label>
             <input type="text" th:field="*{middleName}" id="middleName" placeholder="enter your middle name">
+            <div style="color:red" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">middleName error</div>
             <br>
             <label for="number">Phone number</label>
             <input type="text" th:field="*{number}" id="number" placeholder="enter your phone number">
+            <div style="color:red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">number error</div>
             <br>
             <label for="rentalDays">number of rental days</label>
             <input type="number" name="rentalDays" id="rentalDays" placeholder="rental of days">
