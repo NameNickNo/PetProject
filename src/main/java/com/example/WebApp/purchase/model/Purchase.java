@@ -18,7 +18,8 @@ import java.util.Set;
 public class Purchase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchase_id")
     private int id;
 
     @Column(name = "date_of_purchase")

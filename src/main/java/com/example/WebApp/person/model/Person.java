@@ -13,6 +13,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "person_id")
     private int id;
 
     @Column(name = "first_name")
@@ -33,6 +34,13 @@ public class Person {
 
     public Person(int id, String firstName, String lastName, String middleName, String number) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.number = number;
+    }
+
+    public Person(String firstName, String lastName, String middleName, String number) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;

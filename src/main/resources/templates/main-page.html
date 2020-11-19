@@ -23,7 +23,7 @@
 
             <br>
 
-            <a href="/person/rent"> To rent </a>
+            <a th:href="@{/person/rent/{id}(id = ${car.getId()})}"> To rent </a>
 
             <br>
         </div>

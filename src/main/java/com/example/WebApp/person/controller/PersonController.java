@@ -28,21 +28,21 @@ public class PersonController {
     public String registration(Person person, Model model,
                                @PathVariable("id") int carId) {
         person.setNumber("+7");
-        model.addAttribute("id", carId);
+        model.addAttribute("carId", carId);
 
         return "registration-page";
     }
 
-    @PostMapping("/registration/{id}")
-    public String addPurchase(Person person, @PathVariable("id") int id,
+    @PostMapping("/registration/{carId}")
+    public String addPurchase(Person person, @PathVariable("carId") int id,
                               @RequestParam("rentalDays") int rentalDays) {
-        System.out.println(person.getFirstName());
         System.out.println(id);
-//        personService.savePerson(person);
-//
-//        Car car = carService.findById(id);
-//        Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
-//        purchaseService.savePurchase(createdPurchase);
+        personService.savePerson(person);
+        System.out.println(person.toString());
+
+        Car car = carService.findById(id);
+        Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
+        purchaseService.savePurchase(createdPurchase);
         return "redirect:/car";
     }
 }
