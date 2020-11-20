@@ -2,28 +2,14 @@ package com.example.WebApp.person.service;
 
 import com.example.WebApp.person.model.Person;
 import com.example.WebApp.person.repository.PersonRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
-public class PersonService {
+public interface PersonService {
+    List<Person> findAll();
 
-    private final PersonRepository personRepository;
+    Person findById(int id);
 
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
-
-    public List<Person> findAll() {
-        return personRepository.findAll();
-    }
-
-    public Person findById(int id) {
-        return personRepository.getOne(id);
-    }
-
-    public void savePerson(Person person) {
-        personRepository.save(person);
-    }
+    void savePerson(Person person);
 }

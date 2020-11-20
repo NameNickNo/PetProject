@@ -15,6 +15,7 @@ public class CarServiceImpl implements CarService {
         this.carRepository = carRepository;
     }
 
+    @Override
     public List<Car> findAll() {
         return carRepository.findAll();
     }
@@ -24,6 +25,7 @@ public class CarServiceImpl implements CarService {
         return carRepository.getOne(id);
     }
 
+    @Override
     public void saveCar(Car car) {
         carRepository.save(car);
     }

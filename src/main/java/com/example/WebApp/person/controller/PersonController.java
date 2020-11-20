@@ -1,10 +1,13 @@
 package com.example.WebApp.person.controller;
 
+import com.example.WebApp.car.model.Car;
 import com.example.WebApp.car.service.CarService;
-import com.example.WebApp.car.service.CarServiceImpl;
 import com.example.WebApp.person.model.Person;
 import com.example.WebApp.person.service.PersonService;
+import com.example.WebApp.person.service.PersonServiceImpl;
+import com.example.WebApp.purchase.model.Purchase;
 import com.example.WebApp.purchase.service.PurchaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,7 @@ import javax.validation.Valid;
 @RequestMapping("/person")
 public class PersonController {
 
+    @Qualifier("personServiceImpl")
     private final PersonService personService;
     @Qualifier("carServiceImpl")
     private final CarService carService;
@@ -47,11 +51,11 @@ public class PersonController {
         if (bindingResult.hasErrors()) {
             return "registration-page";
         }
-//        personService.savePerson(person);
+        personService.savePerson(person);
 
-//        Car car = carService.findById(id);
-//        Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
-//        purchaseService.savePurchase(createdPurchase);
+        Car car = carService.findById(id);
+        Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
+        purchaseService.savePurchase(createdPurchase);
         return "redirect:/car";
     }
 }
