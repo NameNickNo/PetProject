@@ -1,11 +1,11 @@
 package com.example.WebApp.person.controller;
 
-import com.example.WebApp.car.model.Car;
 import com.example.WebApp.car.service.CarService;
+import com.example.WebApp.car.service.CarServiceImpl;
 import com.example.WebApp.person.model.Person;
 import com.example.WebApp.person.service.PersonService;
-import com.example.WebApp.purchase.model.Purchase;
 import com.example.WebApp.purchase.service.PurchaseService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +18,7 @@ import javax.validation.Valid;
 public class PersonController {
 
     private final PersonService personService;
+    @Qualifier("carServiceImpl")
     private final CarService carService;
     private final PurchaseService purchaseService;
 
