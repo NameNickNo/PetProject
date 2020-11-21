@@ -15,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/person")
@@ -56,6 +58,34 @@ public class PersonController {
         Car car = carService.findById(id);
         Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
         purchaseService.savePurchase(createdPurchase);
+        return "redirect:/person/order";
+    }
+
+    @GetMapping("/order")
+    public String ordering(Model model) {
+        List<Purchase> orders = purchaseService.findAll();//тоже протестировать
+        Purchase lastOrder = orders.get(orders.size() - 1); //засунуть в метод и протестировать!
+        Car rentalCar = lastOrder.getCar();
+        Person customer = lastOrder.getPerson();
+        int rentPrice = rentalCar.getPrice() * lastOrder.getRentalDays();
+        LocalDate startOfLease = lastOrder.getDateOfPurchase();
+        LocalDate endOfLease = startOfLease.plusDays(lastOrder.getRentalDays());
+
+        model.addAttribute("car", rentalCar);
+        model.addAttribute("lastOrder", lastOrder);
+        model.addAttribute("endDate", endOfLease);
+        model.addAttribute("customer", customer);
+        model.addAttribute("price", rentPrice);
+
+        return "order-page";
+    }
+
+    @PostMapping("/deleteOrder")
+    public String returnToRegistration(@ModelAttribute("lastOrder") Purchase deleteOrder) {
+        int idOfCustomer = deleteOrder.getPerson().getId();//засунуть, протестировать
+        purchaseService.deletePurchase(deleteOrder);
+        personService.deleteById(idOfCustomer);
+
         return "redirect:/car";
     }
 }

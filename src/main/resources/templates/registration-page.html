@@ -32,7 +32,7 @@
             <div style="color:red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">number error</div>
             <br>
             <label for="rentalDays">number of rental days</label>
-            <input type="number" name="rentalDays" id="rentalDays" placeholder="rental of days">
+            <input type="number" min="1" name="rentalDays" id="rentalDays" placeholder="rental of days">
             <br>
             <input type="submit" value="Registration">
         </form>

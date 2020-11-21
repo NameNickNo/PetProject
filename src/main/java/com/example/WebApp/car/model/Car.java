@@ -27,7 +27,7 @@ public class Car {
     private String numberOfCar;
 
     @Column(name = "price_per_day")
-    private String price;
+    private int price;
 
     @Column(name = "fhoto_url")
     private String photo;

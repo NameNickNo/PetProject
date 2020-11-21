@@ -34,6 +34,10 @@ public class PurchaseService {
         purchaseRepository.save(purchase);
     }
 
+    public void deletePurchase(Purchase deletePurchase) {
+        purchaseRepository.delete(deletePurchase);
+    }
+
     public Purchase createPurchase(Car rentalCar, int rentalDays, Person person) {
         LocalDate today = LocalDate.now();
         Store oneStore = storeRepository.getOne(1);

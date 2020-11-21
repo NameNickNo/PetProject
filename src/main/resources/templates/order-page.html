@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+
+    <h1> Order </h1>
+    <h2 align="center">
+        <table>
+            <tr>
+                <td>Name of car:</td>
+                <th th:text="${car.getBrand()} + ' ' + ${car.getName()}"></th>
+            </tr>
+            <tr>
+                <td>Customer: </td>
+                <th th:text="${customer.getFirstName()} + ' ' + ${customer.getLastName()} + ' ' + ${customer.getMiddleName()}" ></th>
+            </tr>
+            <tr>
+                <td>Contact number: </td>
+                <th th:text="${customer.getNumber()}"></th>
+            </tr>
+            <tr>
+                <td>Date start of lease:</td>
+                <th th:text="${lastOrder.getDateOfPurchase()}"></th>
+            </tr>
+            <tr>
+                <td>Data end of lease:</td>
+                <th th:text="${endDate}"></th>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <th th:text="${price}"></th>
+            </tr>
+
+        </table>
+
+        <a href="/car">Checkout</a>
+        <br>
+        <br>
+        <br>
+        <form method="post" th:action="@{/person/deleteOrder}" th:object="${lastOrder}">
+            <input type="submit" value="Cancel">
+        </form>
+    </h2>
+
+</body>
+</html>
