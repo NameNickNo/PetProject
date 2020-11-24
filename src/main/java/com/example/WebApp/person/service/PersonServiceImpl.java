@@ -2,6 +2,7 @@ package com.example.WebApp.person.service;
 
 import com.example.WebApp.person.model.Person;
 import com.example.WebApp.person.repository.PersonRepository;
+import com.example.WebApp.purchase.model.Purchase;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +29,5 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public void savePerson(Person person) {
         personRepository.save(person);
-    }
-
-    @Override
-    public void deleteById(int id) {
-        personRepository.deleteById(id);
     }
 }

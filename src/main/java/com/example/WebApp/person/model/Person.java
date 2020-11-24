@@ -39,27 +39,10 @@ public class Person {
     private String email;
 
 
-    public Person(int id, String firstName, String lastName, String middleName, String number) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.number = number;
-    }
-
     public Person(String firstName, String lastName, String middleName, String number) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
         this.number = number;
-    }
-
-    public Person(int id, String firstName, String lastName, String middleName, String number, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.number = number;
-        this.email = email;
     }
 }
