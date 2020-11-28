@@ -5,7 +5,7 @@
     <title>Car</title>
     <style>
         body{
-            background: url("https://lh3.googleusercontent.com/proxy/B1qSjJZxzNqfZVJ1jU3oVSdWJ811l3oVuQ72X18vapPkpDO1ZxRzbBe_xRJsbgcqFqQnlhe6TB3Oep76-Dn6S4gC74Wl-tN_AptAR_apd2vtFzd4DUsG8A") center no-repeat fixed;
+            background: url("https://clipart-db.ru/file_content/rastr/background_003.jpg") center no-repeat fixed;
             background-size: 100%;
         }
     </style>
@@ -13,23 +13,22 @@
 <body>
 
     <h1 align="center">
-        <a th:text = "${car.getBrand()} + '  ' + ${car.getName()}"></a>
+        <a th:text = "${car.getBrand()} + '  ' + ${car.getName()}" style="color: burlywood"></a>
     </h1>
 
     <h2 align="center">
-        <a th:text = "' price = ' + ${car.getPrice()} + ' rub/day '"></a>
+        <a th:text = "' price = ' + ${car.getPrice()} + ' rub/day '" style="color: burlywood"></a>
         <br>
-        <a th:text = " 'number of car is ' + ${car.getNumberOfCar()}"></a>
+        <a th:text = " 'number of car is ' + ${car.getNumberOfCar()}" style="color: burlywood"></a>
         <br>
         <a><img th:src="${car.getPhoto()}" width="610" height="300" alt="Mit"></a>
         <br>
-        <a th:href="@{/person/rent/{id}(id = ${car.getId()})}"> To rent </a>
+        <a th:href="@{/person/rent/{id}(id = ${car.getId()})}" style="color: crimson"> To rent </a>
 
 
     </h2>
 
     <h2>
-        <a> Another information </a>
         <br>
         <a href="/car"><-- Back to main page...</a>
     </h2>

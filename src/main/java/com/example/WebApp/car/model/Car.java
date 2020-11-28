@@ -1,6 +1,5 @@
 package com.example.WebApp.car.model;
 
-import com.example.WebApp.purchase.model.Purchase;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -34,6 +33,4 @@ public class Car {
 
     @Column(name = "description")
     private String description;
-
-
 }
