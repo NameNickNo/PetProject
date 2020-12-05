@@ -2,6 +2,7 @@ package com.example.WebApp.car.controller;
 
 import com.example.WebApp.car.model.Car;
 import com.example.WebApp.car.service.CarService;
+import com.example.WebApp.purchase.model.Purchase;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,10 @@ public class CarController {
     @GetMapping("/info/{id}")
     public String getInfo(@PathVariable("id") int id, Model model){
         Car car = carService.findById(id);
+        List<Purchase> purchases = car.getPurchaseList();
+
         model.addAttribute("car", car);
+        model.addAttribute("purchases", purchases);
         return "car-info";
     }
 

@@ -1,9 +1,12 @@
 package com.example.WebApp.car.model;
 
+import com.example.WebApp.purchase.model.Purchase;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "car")
@@ -33,4 +36,8 @@ public class Car {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "car_id")
+    private List<Purchase> purchaseList = new ArrayList<>();
 }

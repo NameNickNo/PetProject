@@ -8,9 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 @Table(name = "purchase")
@@ -26,7 +24,6 @@ public class Purchase {
     @Column(name = "date_of_purchase")
     private LocalDate dateOfPurchase;
 
-//    @Min(value = 1, message = "select number of days to rent")
     @Column(name = "rental_days")
     private int rentalDays;
 
