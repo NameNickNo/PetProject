@@ -5,8 +5,10 @@ import com.example.WebApp.car.model.Car;
 import com.example.WebApp.car.service.CarService;
 import com.example.WebApp.person.model.Person;
 import com.example.WebApp.person.service.PersonService;
+import com.example.WebApp.person.util.PersonValidate;
 import com.example.WebApp.purchase.model.Purchase;
 import com.example.WebApp.purchase.service.PurchaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,13 +30,15 @@ public class PersonController {
     private final CarService carService;
     @Qualifier("purchaseServiceImpl")
     private final PurchaseService purchaseService;
+    private final PersonValidate personValidate;
 
     private final Logger log = Logger.getLogger(CarController.class.getName());
 
-    public PersonController(PersonService personService, CarService carService, PurchaseService purchaseService) {
+    public PersonController(PersonService personService, CarService carService, PurchaseService purchaseService, PersonValidate personValidate) {
         this.personService = personService;
         this.carService = carService;
         this.purchaseService = purchaseService;
+        this.personValidate = personValidate;
     }
 
     @GetMapping("/rent/{id}")
@@ -53,6 +57,7 @@ public class PersonController {
         log.info(Integer.toString(id));
         log.info(person.toString());
 
+        personValidate.validate(person, bindingResult);
         if (bindingResult.hasErrors()) {
             return "registration-page";
         }

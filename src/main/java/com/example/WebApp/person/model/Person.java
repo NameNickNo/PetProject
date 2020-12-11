@@ -21,17 +21,17 @@ public class Person {
 
     @NotEmpty(message = "first name should not be empty")
     @Column(name = "first_name")
-    @Size(min = 2, max = 30, message = "First name should between 2 and 30 chars")
+    @Size(min = 2, max = 30, message = "first name should between 2 and 30 chars")
     private String firstName;
 
     @NotEmpty(message = "last name should not be empty")
     @Column(name = "last_name")
-    @Size(min = 2, max = 30, message = "Last name should between 2 and 30 chars")
+    @Size(min = 2, max = 30, message = "last name should between 2 and 30 chars")
     private String lastName;
 
     @NotEmpty(message = "middle name should not be empty")
     @Column(name = "middle_name")
-    @Size(min = 2, max = 30, message = "Middle name should between 2 and 30 chars")
+    @Size(min = 2, max = 30, message = "middle name should between 2 and 30 chars")
     private String middleName;
 
     @Size(min = 12, max = 12, message = "number is not correct")
@@ -40,7 +40,8 @@ public class Person {
     private String number;
 
     @Column(name = "email")
-    @Email
+    @Email(message = "email should be in the format of an email address")
+    @NotEmpty
     private String email;
 
 

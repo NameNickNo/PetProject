@@ -18,6 +18,10 @@
                 <th th:text="${customer.getFirstName()} + ' ' + ${customer.getLastName()} + ' ' + ${customer.getMiddleName()}" ></th>
             </tr>
             <tr>
+                <td>Email: </td>
+                <th th:text="${customer.getEmail()}" ></th>
+            </tr>
+            <tr>
                 <td>Contact number: </td>
                 <th th:text="${customer.getNumber()}"></th>
             </tr>

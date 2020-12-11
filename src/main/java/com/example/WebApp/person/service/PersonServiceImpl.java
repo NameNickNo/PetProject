@@ -30,4 +30,13 @@ public class PersonServiceImpl implements PersonService{
     public void savePerson(Person person) {
         personRepository.save(person);
     }
+
+    @Override
+    public Person findByEmail(String email) {
+        List<Person> people = findAll();
+        return people.stream()
+                .filter(person -> person.getEmail().equals(email))
+                .findAny()
+                .orElse(null);
+    }
 }

@@ -13,4 +13,6 @@ public interface PersonService {
     Person findById(int id);
 
     void savePerson(Person person);
+
+    Person findByEmail(String email);
 }
