@@ -1,5 +1,6 @@
 package com.example.WebApp.person.controller;
 
+import com.example.WebApp.car.controller.CarController;
 import com.example.WebApp.car.model.Car;
 import com.example.WebApp.car.service.CarService;
 import com.example.WebApp.person.model.Person;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/person")
@@ -26,6 +28,8 @@ public class PersonController {
     private final CarService carService;
     @Qualifier("purchaseServiceImpl")
     private final PurchaseService purchaseService;
+
+    private final Logger log = Logger.getLogger(CarController.class.getName());
 
     public PersonController(PersonService personService, CarService carService, PurchaseService purchaseService) {
         this.personService = personService;
@@ -46,16 +50,16 @@ public class PersonController {
     public String addPurchase(@Valid Person person, BindingResult bindingResult,
                               @PathVariable("carId") int id,
                               @RequestParam("rentalDays") int rentalDays) {
-        System.out.println(id);
-        System.out.println(person.toString());
+        log.info(Integer.toString(id));
+        log.info(person.toString());
 
         if (bindingResult.hasErrors()) {
             return "registration-page";
         }
         personService.savePerson(person);
 
-        Car car = carService.findById(id);
-        Purchase createdPurchase = purchaseService.createPurchase(car, rentalDays, person);
+        Car rentalCar = carService.findById(id);
+        Purchase createdPurchase = purchaseService.createPurchase(rentalCar, rentalDays, person);
         purchaseService.savePurchase(createdPurchase);
         return "redirect:/person/order";
     }

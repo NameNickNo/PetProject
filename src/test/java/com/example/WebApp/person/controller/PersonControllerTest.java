@@ -1,26 +1,58 @@
 package com.example.WebApp.person.controller;
 
-import com.example.WebApp.purchase.model.Purchase;
-import com.example.WebApp.purchase.service.PurchaseService;
-import com.example.WebApp.purchase.service.PurchaseServiceImpl;
+import com.example.WebApp.car.controller.CarController;
+import com.example.WebApp.person.model.Person;
+import com.example.WebApp.person.service.PersonService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
-import java.util.List;
+import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-public class PersonControllerTest {
+@SpringBootTest
+class PersonControllerTest {
+
+    @InjectMocks
+    private PersonController controller;
     @Mock
-    private PurchaseServiceImpl purchaseService;
+    @Qualifier("personServiceImpl")
+    private PersonService personService;
+
+    private final Logger logger = Logger.getLogger(CarController.class.getName());
 
 
-    @Test(expected = NullPointerException.class)
-    public void lo() {
-        List<Purchase> list = purchaseService.findAll();
-        Purchase purchase = purchaseService.findById(9);
-        assertEquals(list.get(2), purchase );
+    @Mock
+    private Model model;
+    private Person person;
+
+    @BeforeEach
+    void setUp() {
+        person = mock(Person.class);
     }
 
+    @Test
+    void registrationMethodTest() {
+        int carId = 2;
+        controller.registration(person, model, carId);
+        verify(person).setNumber("+7");
+        verify(model).addAttribute("carId", carId);
+        logger.info("Test was successful");
+    }
+
+    @Test
+    void addPurchaseShouldSuccessful() {
+        BindingResult bindingResult = mock(BindingResult.class);
+        int checkedId = 2;
+        int rentalDays = 2;
+        controller.addPurchase(person, bindingResult, checkedId, rentalDays);
+        verify(personService).savePerson(person);
+    }
 }

@@ -22,17 +22,16 @@ public class CarController {
     }
 
     @GetMapping()
-    public String getAll(Model model) {
+    public String MainPage(Model model) {
         List<Car> cars = carService.findAll();
         model.addAttribute("cars", cars);
         return "main-page";
     }
 
     @GetMapping("/info/{id}")
-    public String getInfo(@PathVariable("id") int id, Model model){
+    public String getCarInfo(@PathVariable("id") int id, Model model){
         Car car = carService.findById(id);
         List<Purchase> purchases = car.getPurchaseList();
-
         model.addAttribute("car", car);
         model.addAttribute("purchases", purchases);
         return "car-info";
