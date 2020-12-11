@@ -1,7 +1,6 @@
 package com.example.WebApp.car.controller;
 
 import com.example.WebApp.car.service.CarService;
-import com.example.WebApp.car.service.CarServiceImpl;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import org.springframework.ui.Model;
 import java.util.logging.Logger;
 
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CarControllerTest {
@@ -27,7 +25,7 @@ class CarControllerTest {
     @Mock
     Model model;
 
-    private Logger logger = Logger.getLogger(CarController.class.getName());
+    private final Logger logger = Logger.getLogger(CarController.class.getName());
 //    @BeforeEach
 //    void setUp() {
 //        carService = mock(CarServiceImpl.class);

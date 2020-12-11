@@ -47,7 +47,7 @@ public class PersonController {
     }
 
     @PostMapping("/registration/{carId}")
-    public String addPurchase(@Valid Person person, BindingResult bindingResult,
+    public String createPurchase(@Valid Person person, BindingResult bindingResult,
                               @PathVariable("carId") int id,
                               @RequestParam("rentalDays") int rentalDays) {
         log.info(Integer.toString(id));

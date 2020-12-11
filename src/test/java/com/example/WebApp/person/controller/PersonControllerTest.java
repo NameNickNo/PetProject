@@ -49,10 +49,15 @@ class PersonControllerTest {
 
     @Test
     void addPurchaseShouldSuccessful() {
-        BindingResult bindingResult = mock(BindingResult.class);
-        int checkedId = 2;
-        int rentalDays = 2;
-        controller.addPurchase(person, bindingResult, checkedId, rentalDays);
-        verify(personService).savePerson(person);
+        if (person != null) {
+            BindingResult bindingResult = mock(BindingResult.class);
+            int checkedId = 2;
+            int rentalDays = 2;
+            controller.createPurchase(person, bindingResult, checkedId, rentalDays);
+            verify(personService).savePerson(person);
+        } else {
+            logger.info("Person is NULL!!!");
+        }
+
     }
 }
