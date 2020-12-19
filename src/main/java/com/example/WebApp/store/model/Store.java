@@ -19,6 +19,6 @@ public class Store {
     @Column(name = "name")
     private String name;
 
-//    @Column(name = "store_address")
-//    private String storeAddress;
+    @Column(name = "address")
+    private String storeAddress;
 }

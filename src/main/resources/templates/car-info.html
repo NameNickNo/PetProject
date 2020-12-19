@@ -17,7 +17,7 @@
     </h1>
 
     <h2 align="center">
-        <a th:text = "' price = ' + ${car.getPrice()} + ' rub/day '" style="color: burlywood"></a>
+        <a th:text = "${car.getPrice()} + ' rub/day '" style="color: burlywood"></a>
         <br>
         <a th:text = " 'number of car is ' + ${car.getNumberOfCar()}" style="color: burlywood"></a>
         <br>

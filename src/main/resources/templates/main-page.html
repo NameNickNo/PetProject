@@ -21,7 +21,7 @@
             <a th:text = "${car.getBrand()} + '  ' + ${car.getName()}" style="color: burlywood"></a>
 
             <br>
-            <a th:text="' price = ' + ${car.getPrice()} + ' rub/day '" style="color: burlywood"></a>
+            <a th:text="${car.getPrice()} + ' rub/day '" style="color: burlywood"></a>
 
             <br>
             <a th:href="@{/car/info/{id} (id=${car.getId()})}" style="color: darkorange"> information</a>

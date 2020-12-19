@@ -1,5 +1,6 @@
 package com.example.WebApp.person.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -44,11 +45,4 @@ public class Person {
     @NotEmpty
     private String email;
 
-
-    public Person(String firstName, String lastName, String middleName, String number) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.number = number;
-    }
 }
