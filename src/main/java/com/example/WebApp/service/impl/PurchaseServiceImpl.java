@@ -8,11 +8,13 @@ import com.example.WebApp.model.Store;
 import com.example.WebApp.repository.StoreRepository;
 import com.example.WebApp.service.PurchaseService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class PurchaseServiceImpl implements PurchaseService {
 
     private final PurchaseRepository purchaseRepository;
@@ -32,10 +34,12 @@ public class PurchaseServiceImpl implements PurchaseService {
         return purchaseRepository.getOne(id);
     }
 
+    @Transactional
     public void savePurchase(Purchase purchase) {
         purchaseRepository.save(purchase);
     }
 
+    @Transactional
     public Purchase createPurchase(Car rentalCar, int rentalDays, Person person) {
         LocalDate today = LocalDate.now();
         Store oneStore = storeRepository.getOne(1);

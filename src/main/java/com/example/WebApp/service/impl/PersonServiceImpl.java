@@ -4,10 +4,12 @@ import com.example.WebApp.model.Person;
 import com.example.WebApp.repository.PersonRepository;
 import com.example.WebApp.service.PersonService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
@@ -27,6 +29,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @Transactional
     public void savePerson(Person person) {
         personRepository.save(person);
     }
