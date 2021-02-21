@@ -30,35 +30,41 @@
 
     <h2>
         <a style="color: aliceblue">__________________History___________________</a>
-
-
-        <table>
-            <thead>
-                <tr>
-                    <th style="color: aliceblue"> FIO </th>
-                    <th style="color: aliceblue"> Date of order </th>
-                    <th style="color: aliceblue"> Rental days </th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr th:each="purchase : ${purchases}">
-                <td th:text="${purchase.getPerson().getFirstName()} + ' ' + ${purchase.getPerson().getLastName()}
-                        + ' ' + ${purchase.getPerson().getMiddleName()}" style="color: aliceblue"></td>
-                <td th:text="${purchase.getDateOfPurchase()}" style="color: aliceblue"></td>
-                <td th:text="${purchase.getRentalDays()}" style="color: aliceblue"></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <a href="/car" style="color: aliceblue"><-- Back to main page...</a>
     </h2>
+
+        <div th:switch = ${purchases}>
+            <h2 th:case = "null" style="color: aliceblue"> No orders </h2>
+            <h2 th:case = "*">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="color: aliceblue"> FIO </th>
+                        <th style="color: aliceblue"> Date of order </th>
+                        <th style="color: aliceblue"> Rental days </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="purchase : ${purchases}">
+                        <td th:text="${purchase.getPerson().getFirstName()} + ' ' + ${purchase.getPerson().getLastName()}
+                        + ' ' + ${purchase.getPerson().getMiddleName()}" style="color: aliceblue"></td>
+                        <td th:text="${purchase.getDateOfPurchase()}" style="color: aliceblue"></td>
+                        <td th:text="${purchase.getRentalDays()}" style="color: aliceblue"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+            </h2>
+        </div>
+
+
+        <a href="/car" style="color: aliceblue"><-- Back to main page...</a>
+
 
 </body>
 </html>
